@@ -1,0 +1,57 @@
+[project]
+name = "bark-push"
+version = "0.1.0"
+description = "Bark push notifications with the Python standard library"
+readme = "README.md"
+authors = [
+    { name = "ByteColtX", email = "umk@live.com" }
+]
+requires-python = ">=3.10"
+dependencies = []
+keywords = ["bark", "push", "notification", "ios", "apns"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3 :: Only",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Typing :: Typed",
+    "Topic :: Communications",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+
+[build-system]
+requires = ["uv_build>=0.13.5,<0.14.0"]
+build-backend = "uv_build"
+
+[dependency-groups]
+dev = [
+    "coverage>=7.16.2",
+    "ruff>=0.17.2",
+]
+
+[tool.ruff]
+line-length = 88
+target-version = "py310"
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B", "SIM", "RUF"]
+
+[tool.ruff.lint.per-file-ignores]
+# FIPS-197 S-box is a dense data table; line length is not meaningful here.
+"src/bark_push/_aes.py" = ["E501"]
+
+[tool.ruff.format]
+quote-style = "double"
+
+[tool.coverage.run]
+source = ["src/bark_push"]
+branch = true
+
+[tool.coverage.report]
+show_missing = true
+fail_under = 100
