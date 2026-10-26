@@ -193,6 +193,13 @@ class PushParamsTest(unittest.TestCase):
     def test_empty_subtitle_is_treated_as_unset(self) -> None:
         self.assertEqual(PushParams(subtitle="", body="b").to_payload(), {"body": "b"})
 
+    def test_empty_body_is_treated_as_unset(self) -> None:
+        self.assertEqual(PushParams(body="").to_payload(), {})
+        self.assertEqual(
+            PushParams(title="t", body="", group="g").to_payload(),
+            {"title": "t", "group": "g"},
+        )
+
     def test_text_fields_reject_non_strings(self) -> None:
         with self.assertRaises(TypeError):
             PushParams(group=1)  # type: ignore[arg-type]

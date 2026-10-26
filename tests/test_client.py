@@ -321,6 +321,17 @@ class BarkClientTest(unittest.TestCase):
         self.assertEqual(url.path, "/KEY/b")
         self.assertEqual(url.query, "")
 
+    def test_get_with_empty_body_keeps_route_clean(self) -> None:
+        self.client.send(PushParams(body=""), method="get")
+        url = urlsplit(self.last["path"])
+        self.assertEqual(url.path, "/KEY")
+        self.assertEqual(url.query, "")
+
+        self.client.send(PushParams(title="T", body=""), method="get")
+        url = urlsplit(self.last["path"])
+        self.assertEqual(url.path, "/KEY")
+        self.assertEqual(parse_qs(url.query), {"title": ["T"]})
+
     def test_send_many_rejects_string(self) -> None:
         with self.assertRaises(TypeError):
             self.client.send_many("key1", PushParams(body="b"))

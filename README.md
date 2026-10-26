@@ -116,6 +116,7 @@ client.delete("notification-id")
 - `call`、`is_archive`、`delete` 接受 `bool`、`0/1`、`"0"/"1"`。`call=False`、`delete=False` 等同于不传；`is_archive=False` 会明确发送 `"0"`（不保存），因为不传时由 App 内设置决定。
 - `level` 只接受文档列出的四个值；`action` 允许其他字符串，服务端会按默认行为处理。
 - `markdown` 与 `body` 可以同时存在，服务端会忽略 `body`。
+- `title`、`subtitle`、`body` 传空串等同于不传；GET 因此不会生成 `/key/` 这种尾斜杠路由。
 - `device_key` 与 `device_keys` 互斥。
 - `id` 即使传数字也会转成字符串，符合 Bark「JSON 传数字不生效」的要求。
 

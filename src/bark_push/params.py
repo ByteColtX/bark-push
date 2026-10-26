@@ -157,7 +157,9 @@ class PushParams:
                 continue
             if not isinstance(value, str):
                 raise TypeError(f"{name} must be a string, got {type(value).__name__}")
-        for name in ("title", "subtitle"):
+        # Empty content fields carry no information; dropping them keeps GET
+        # paths free of empty segments (``/key/`` would be a different route).
+        for name in ("title", "subtitle", "body"):
             if getattr(self, name) == "":
                 set_field(name, None)
 
