@@ -188,3 +188,7 @@ Ruff 配置为 88 列、`target-version = "py310"`，启用 `E/F/I/UP/B/SIM/RUF`
 实现只使用标准库；测试同样基于 `unittest`，并用本地 HTTP 服务器验证真实请求，用 NIST/FIPS-197 与 Bark 文档示例验证 AES。`coverage` 配置要求行覆盖率和分支覆盖率均为 100%，低于 100% 会直接失败。
 
 测试覆盖了全部 23 个参数（含 `sound`、`image`、`icon`）、三种请求方式、`/push`、批量推送、删除、加密、错误映射，以及 AES 的密钥长度/块长度/PKCS#7 边界。
+
+## 许可证
+
+[MIT](LICENSE)
